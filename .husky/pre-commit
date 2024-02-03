@@ -12,7 +12,8 @@ npm run check:types || (
     false;
 )
 
-npm run build ||
+
+!(npm run build) ||
 (
     echo '❌👷 Better call Bob... React build failed. ❌👷 View the errors above to see why.';
     false;
