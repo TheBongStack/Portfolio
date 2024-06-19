@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--Links for external resources-->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <script src="https://www.paypal.com/sdk/js?client-id=test&currency=USD"></script>
+        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+        <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+        <script>
+            paypal.Buttons({
+                // Order is created on the server and the order id is returned
+                createOrder() {
+                return fetch("/my-server/create-paypal-order", {
+                    method: "POST",
+                    headers: {
+                    "Content-Type": "application/json",
+                    },
+                    // use the "body" param to optionally pass additional order information
+                    // like product skus and quantities
+                    body: JSON.stringify({
+                    cart: [
+                        {
+                        sku: "YOUR_PRODUCT_STOCK_KEEPING_UNIT",
+                        quantity: "YOUR_PRODUCT_QUANTITY",
+                        },
+                    ],
+                    }),
+                })
+                .then((response) => response.json())
+                .then((order) => order.id);
+                },
+                // Finalize the transaction on the server after payer approval
+                onApprove(data) {
+                return fetch("/my-server/capture-paypal-order", {
+                    method: "POST",
+                    headers: {
+                    "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                    orderID: data.orderID
+                    })
+                })
+                .then((response) => response.json())
+                .then((orderData) => {
+                    // Successful capture! For dev/demo purposes:
+                    console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                    const transaction = orderData.purchase_units[0].payments.captures[0];
+                    alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+                    // When ready to go live, remove the alert and show a success message within this page. For example:
+                    // const element = document.getElementById('paypal-button-container');
+                    // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                    // Or go to another URL:  window.location.href = 'thank_you.html';
+                });
+                }
+            }).render('#paypal-button-container');
+        </script>
+        <!--End of external resource links-->
+        <title>S Bose | Portfolio</title>
+        <link rel="stylesheet" href="./style.css" type="text/css" />
+        <link rel="icon" href="../icon.png" />
+        <noscript>
+            <meta http-equiv="Refresh" content="0; url=./../nojsError/nojs.html">
+        </noscript>
+        <script defer src="./proc.js"></script>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, scale=1.0" />
+    </head>
+    <body>
+        <div id="preloader"></div>
+        <header>
+            <a href="#home" class="logo">S Bose | Portfolio.</a>
+            <i class="fa-sharp fa-solid fa-bars" id="menu_button"></i>
+            <nav>
+                <a href="#home" class="nav_button active">Home</a>
+                <a href="#about" class="nav_button">About</a>
+                <a href="#project" class="nav_button">Projects</a>
+                <a href="#skill" class="nav_button">Skills</a>
+                <a href="#contact" class="nav_button">Contact</a>
+            </nav>
+        </header>
+        <div class="confirmation" id="confirmation">
+            <div class="options_container">
+                <a href="" class="btn reset_btn">Freelancer</a>
+                <a href="" class="btn reset_btn">Fiverr.</a>
+            </div>
+            <i class="fa-solid fa-xmark" id="closeconfirmation"></i>
+        </div>
+        <main>
+            <section class="home" id="home">
+                <div class="home_content">
+                    <h3>Hello, It's Me</h3>
+                    <h1>Sourabrata Bose</h1>
+                    <div class="typewriter">
+                        <h3 class="static_text">And I'm a </h3>
+                        <ul class="type_text">
+                            <li><span>Frontend Developer</span></li>
+                            <li><span>Backend Developer</span></li>
+                            <li><span>Web UX/UI Designer</span></li>
+                            <li><span>Fullstack Developer</span></li>
+                        </ul>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis numquam at sapiente dolores aspernatur, cupiditate omnis, non ipsum possimus facere nulla laudantium esse mollitia magnam reiciendis repudiandae praesentium iste!</p>
+                    <div class="social_links">
+                        <a href=""><i class="fa-brands fa-facebook-f fa-2xl"></i></a>
+                        <a href=""><i class="fa-brands fa-square-instagram fa-2xl"></i></a>
+                        <a href=""><i class="fa-brands fa-square-github fa-2xl"></i></a>
+                        <a href=""><i class="fa-brands fa-twitter fa-2xl"></i></a>
+                    </div>
+                    <div class="home_buttons">
+                        <a href="" class="btn" download="">Download CV<i class="fa-solid fa-file-arrow-down"></i></a>
+                        <button class="btn reset_btn" id="hire_me">Hire Me<i class="fa-solid fa-bolt"></i></button>
+                    </div>
+                </div>
+                <div class="home_image">
+                    <img src="Start Project Complete Responsive Portfolio Website/images/home.png" alt="It's me ! Sourabrata Bose"/>
+                </div>
+            </section>
+
+            <section class="about" id="about">
+                <div class="about_image">
+                    <img src="Start Project Complete Responsive Portfolio Website/images/about.png" alt="A little about me"/>
+                </div>
+                <div class="about_content_wrapper">
+                    <h1 class="about_heading">About <span>Me</span></h1>
+                    <div class="about_subheading">
+                        <h3>Fullstack Developer.</h3>
+                        <h3>Web Designer.</h3>
+                    </div>
+                    <div class="about_content" id="expandable">
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod atque distinctio aut, sed impedit blanditiis harum, maxime, ullam ut ipsa adipisci sint minima natus? Dicta repudiandae corrupti, delectus accusamus incidunt rem est, impedit quidem soluta itaque consectetur aspernatur, deserunt iusto? Praesentium ducimus debitis harum architecto veniam modi laborum incidunt necessitatibus.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Id labore reiciendis ipsa natus fugit, modi velit iure a itaque nemo quaerat dicta debitis eaque voluptas deleniti nesciunt at. Nemo officia eum itaque quis accusamus ipsam, veniam voluptatum fuga temporibus possimus sequi maxime nulla perferendis cupiditate dolores dignissimos, obcaecati tempore recusandae.
+                        </p>
+                    </div>
+                    <button type="button" class="btn" id="readmore">Read More<i class="fa-solid fa-angles-down"></i></button>
+                </div>
+            </section>
+
+            <section class="project" id="project">
+                <h2 class="project_heading">My <span>Latest</span> Projects</h2>
+                <p class="project_content">Some of my latest and best explorative ventures in the developement world are given below.</p>
+                <div class="project_wrapper">
+                    <div class="project_box">
+                        <img src="Start Project Complete Responsive Portfolio Website/images/portfolio1.jpg" alt="Project 1"/>
+                        <div class="project_description">
+                            <h4>Web Design</h4>
+                            <hr>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore id, eaque beatae aspernatur natus officiis libero a omnis placeat labore?</p>
+                            <a href="">Demo Link<i class="fa-solid fa-up-right-from-square fa-lg"></i></a>
+                        </div>
+                    </div>
+                    <div class="project_box">
+                        <img src="Start Project Complete Responsive Portfolio Website/images/portfolio2.jpg" alt="Project 1"/>
+                        <div class="project_description">
+                            <h4>Web Design</h4>
+                            <hr>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore id, eaque beatae aspernatur natus officiis libero a omnis placeat labore?</p>
+                            <a href="">Demo Link<i class="fa-solid fa-up-right-from-square fa-lg"></i></a>
+                        </div>
+                    </div>
+                    <div class="project_box">
+                        <img src="Start Project Complete Responsive Portfolio Website/images/portfolio3.jpg" alt="Project 1"/>
+                        <div class="project_description">
+                            <h4>Web Design</h4>
+                            <hr>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore id, eaque beatae aspernatur natus officiis libero a omnis placeat labore?</p>
+                            <a href="">Demo Link<i class="fa-solid fa-up-right-from-square fa-lg"></i></a>
+                        </div>
+                    </div>
+                    <div class="project_box">
+                        <img src="Start Project Complete Responsive Portfolio Website/images/portfolio4.jpg" alt="Project 1"/>
+                        <div class="project_description">
+                            <h4>Web Design</h4>
+                            <hr>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore id, eaque beatae aspernatur natus officiis libero a omnis placeat labore?</p>
+                            <a href="">Demo Link<i class="fa-solid fa-up-right-from-square fa-lg"></i></a>
+                        </div>
+                    </div>
+                    <div class="project_box">
+                        <img src="Start Project Complete Responsive Portfolio Website/images/portfolio5.jpg" alt="Project 1"/>
+                        <div class="project_description">
+                            <h4>Web Design</h4>
+                            <hr>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore id, eaque beatae aspernatur natus officiis libero a omnis placeat labore?</p>
+                            <a href="">Demo Link<i class="fa-solid fa-up-right-from-square fa-lg"></i></a>
+                        </div>
+                    </div>
+                    <div class="project_box">
+                        <img src="Start Project Complete Responsive Portfolio Website/images/portfolio6.jpg" alt="Project 1"/>
+                        <div class="project_description">
+                            <h4>Web Design</h4>
+                            <hr>
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore id, eaque beatae aspernatur natus officiis libero a omnis placeat labore?</p>
+                            <a href="">Demo Link<i class="fa-solid fa-up-right-from-square fa-lg"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="skill" id="skill">
+                <h1 class="skill_heading">My <span>Skills</span></h1>
+                <div class="knowledge_content">
+                    <p>
+                            Lorem ipstat Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis adipisci, corporis ab numquam iure animi. dignissimos, obcaecati tempore recusandae.
+                    </p>
+                    <div class="knowledge_keywords">
+                        <span class="keyword">C++</span>
+                        <span class="keyword">C</span>
+                        <span class="keyword">Java</span>
+                        <span class="keyword">JavaScript</span>
+                        <span class="keyword">HTML</span>
+                        <span class="keyword">CSS</span>
+                        <span class="keyword">MongoDB</span>
+
+                        <span class="keyword">MySQL</span>
+                        <span class="keyword">Node.JS</span>
+                        <span class="keyword">Express.JS</span>
+                        <span class="keyword">Electron.JS</span>
+                        <span class="keyword">Docker</span>
+                        <span class="keyword">Kubernetees</span>
+                        <span class="keyword">GCP</span>
+
+                        <span class="keyword">Git</span>
+                        <span class="keyword">Github</span>
+                        <span class="keyword">Figma</span>
+                        <span class="keyword">Redis</span>
+                        <span class="keyword">React.JS</span>
+                        <span class="keyword">React Native</span>
+                        <span class="keyword">TypeScript</span>
+                    </div>
+                </div>
+                <div class="experiences">
+                    <h3>Experiences</h3>
+                    <div class="experiences_wrapper">
+                        <button class="left_scroll" id="leftScroll"><i class="fa-solid fa-angle-left"></i></button>
+                        <div class="experience_container" id="experience_container">
+                            <div class="experience_box">
+                                <i class="fa-solid fa-code"></i>
+                                <h3>Lorem, ipsum.</h3>
+                                <div class="experience_content">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A tempora nobis eligendi voluptates earum, sed voluptatem accusantium eos quisquam architecto illo culpa, doloremque quod repellendus dignissimos in quo ipsa molestiae.</p>
+                                </div>
+                                <a class="cert">Letter of completion <i class="fa-solid fa-up-right-from-square fa-lg"></i></a>
+                            </div>
+                            <div class="experience_box">
+                                <i class="fa-solid fa-code"></i>
+                                <h3>Lorem, ipsum.</h3>
+                                <div class="experience_content">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A tempora nobis eligendi voluptates earum, sed voluptatem accusantium eos quisquam architecto illo culpa, doloremque quod repellendus dignissimos in quo ipsa molestiae.</p>
+                                </div>
+                                <a class="cert">Letter of completion <i class="fa-solid fa-up-right-from-square fa-lg"></i></a>
+                            </div>
+                            <div class="experience_box">
+                                <i class="fa-solid fa-code"></i>
+                                <h3>Lorem, ipsum.</h3>
+                                <div class="experience_content">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A tempora nobis eligendi voluptates earum, sed voluptatem accusantium eos quisquam architecto illo culpa, doloremque quod repellendus dignissimos in quo ipsa molestiae.</p>
+                                </div>
+                                <a class="cert">Letter of completion <i class="fa-solid fa-up-right-from-square fa-lg"></i></a>
+                            </div>
+                            <div class="experience_box">
+                                <i class="fa-solid fa-code"></i>
+                                <h3>Lorem, ipsum.</h3>
+                                <div class="experience_content">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A tempora nobis eligendi voluptates earum, sed voluptatem accusantium eos quisquam architecto illo culpa, doloremque quod repellendus dignissimos in quo ipsa molestiae.</p>
+                                </div>
+                                <a class="cert">Letter of completion <i class="fa-solid fa-up-right-from-square fa-lg"></i></a>
+                            </div>
+                            <div class="experience_box">
+                                <i class="fa-solid fa-code"></i>
+                                <h3>Lorem, ipsum.</h3>
+                                <div class="experience_content">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A tempora nobis eligendi voluptates earum, sed voluptatem accusantium eos quisquam architecto illo culpa, doloremque quod repellendus dignissimos in quo ipsa molestiae.</p>
+                                </div>
+                                <a class="cert">Letter of completion <i class="fa-solid fa-up-right-from-square fa-lg"></i></a>
+                            </div>
+                        </div>
+                        <button class="right_scroll" id="rightScroll"><i class="fa-solid fa-angle-right"></i></button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contact" id="contact">
+                <div class="contact_content">
+                    <h2 class="contact_heading">Contact <span>Me !</span></h2>
+                    <p></p>
+                </div>
+                <form action="#" class="contact_form">
+                    <div class="input_box">
+                        <input type="text" placeholder="Full Name" >
+                        <input type="email" placeholder="E - Mail">
+                    </div>
+                    <div class="input_box">
+                        <input type="text" placeholder="Subject">
+                        <input type="tel" placeholder="Contact Number">
+                    </div>
+                    <textarea name="" id="" cols="10" rows="10" placeholder="Your Message"></textarea>
+                    <div class="add_calendly">
+                        <button type="button" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/sbose2002'});return false;" class="btn">Schedule meet</button>
+                        <div class="form_buttons">
+                            <button type="reset" class="btn reset_btn" id="reset_btn">Reset</button>
+                            <button type="submit" class="btn" id="submit_btn">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </section>
+        </main>
+        <footer>
+            <div class="footer_sections">
+                <div class="personal_contact">
+                    <h1><span>Personal</span> contacts</h1>
+                    <hr>
+                    <div class="address">
+                        <h3>My address : </h3>
+                        <p>190 Dum Dum Park, Setu Apartment, Flat - 6, Tank - 4, Kolkata 700 055</p>
+                    </div>
+                    <div class="mobile_number">
+                        <h3>My contact number : </h3>
+                        <p>+91 9875666031</p>
+                    </div>
+                </div>
+                <div class="support_me">
+                        <h1><span>Support </span>me by : </h1>
+                        <hr>
+                        <!-- Replace "test" with your own sandbox Business account app client ID -->
+                        <div id="paypal-button-container"></div>
+                        <div class="buyMeACoffee">
+                            <a href="https://www.buymeacoffee.com/sbose"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a Book&emoji=📖&slug=sbose&button_colour=BD5FFF&font_colour=ffffff&font_family=Poppins&outline_colour=000000&coffee_colour=FFDD00" /></a>
+                        </div>
+                </div>
+            </div>
+            <hr>
+            <p>My Portfolio | Made with love by Sourabrata Bose <a href="#home">Go to Top<i class="fa-solid fa-circle-up"></i></a></p>
+        </footer>
+    </body>
+</html>
