@@ -1,0 +1,53 @@
+.backdrop{
+    width: 100vw;
+    height: 100vh;
+    overflow: scroll;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 101;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(1rem);
+    transition: all 0.3s ease;
+}
+.options{
+    background-color: var(--second-bg-color);
+    border-radius: 3rem;
+    padding: 2.5rem 2rem;
+    margin: 2.5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    
+    min-height: 20rem;
+    min-width: 30rem;
+    max-height: 40rem;
+    max-width: 35vw;
+
+    position: relative;
+}
+.options>a{
+    min-width: 100%;
+}
+
+
+.cross{
+    position: absolute;
+    margin: 2.5rem;
+    top: 0;
+    right: 0;
+    color: var(--text-color);
+    font-size: 2.5rem;
+    transition: all 0.3s ease;
+}
+.cross:hover{
+    text-shadow: 0 0 1.5rem var(--main-color);
+}

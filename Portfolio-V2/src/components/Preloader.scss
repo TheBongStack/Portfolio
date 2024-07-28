@@ -1,0 +1,10 @@
+.preloader{
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: var(--bg-color);
+    background-image: url(../../public/preloader.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 7.5%;
+}
