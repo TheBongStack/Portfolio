@@ -1,0 +1,40 @@
+#skill{
+    flex-direction: column;
+}
+.knowledge_content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    p{
+        margin: 3rem 1.5rem;
+        text-align: center;
+    }
+    div{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 1rem 2rem;
+    }
+    span{
+        padding: 0.5rem 1rem;
+        margin: 0.5rem;
+        color: var(--text-color);
+        background-color: var(--bg-color);
+        border-radius: 0.75rem;
+    }
+}
+
+
+.experiences{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 2rem;
+    width: 100%;
+    h3{
+        text-align: center;
+    }
+}

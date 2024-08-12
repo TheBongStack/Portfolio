@@ -1,22 +1,25 @@
+import { Ref, useState } from "react";
+import Button from "../utils/Buttons";
 import "./About.scss";
 
-function About() {
+function About({refs}: {refs: Ref<HTMLElement>}) {
+  const [readmore, setReadmore] = useState(false);
   return (
-    <section className="about" id="about">
-        <img
-          src="/about.png"
-          alt="A little about me"
-        />
-      <div className="about_wrapper">
-        <h1 className="about_heading">
+    <section id="about" ref={refs}>
+      <img
+        src="/about.png"
+        alt="A little about me"
+        className="about_img"
+      />
+      <div>
+        <h1>
           About <span>Me</span>
         </h1>
-        <div className="about_subheading">
-          <h3>Fullstack Developer.</h3>
-          <h3>Web Designer.</h3>
-        </div>
-        <div className="about_content" id="expandable">
-          <p>
+        <h3>
+          Fullstack Developer. <br />
+          <span>Blockchain Developer.</span>
+        </h3>
+          <p className={`about_text ${ readmore ? "" : "expand" }`}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Quod atque
             distinctio aut, sed impedit blanditiis harum, maxime, ullam ut ipsa
             adipisci sint minima natus? Dicta repudiandae corrupti, delectus
@@ -30,10 +33,9 @@ function About() {
             sequi maxime nulla perferendis cupiditate dolores dignissimos,
             obcaecati tempore recusandae.
           </p>
-        </div>
-        <button type="button" className="btn" id="readmore">
-          Read More<i className="fa-solid fa-angles-down"></i>
-        </button>
+        <Button props={{onClick: () => setReadmore((state) => !state)}}>
+          Read More<i className={`fa-solid ${ readmore ? "fa-angles-up" : "fa-angles-down"}`}></i>
+        </Button>
       </div>
     </section>
   );

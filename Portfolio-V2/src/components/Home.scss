@@ -1,14 +1,3 @@
-/*Specific section styling - home*/
-.home{
-    padding: 10rem 9% 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-/*All text styling for the section*/
-h3,
 .Typewriter span{
     font-size: 2.5rem;
     font-weight: 700;
@@ -20,18 +9,6 @@ h3,
     display: inline-block;
 }
 
-h1{
-    font-size: 4.3rem;
-    font-weight: 700;
-    line-height: 1.3;
-}
-p{
-    font-size: 1.6rem;
-}
-button{
-    margin-left: 2rem;
-}
-.home img {
+.home_img {
     margin-left: 3rem;
-    width: 30vw;
 }

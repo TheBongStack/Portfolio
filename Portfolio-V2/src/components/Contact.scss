@@ -1,0 +1,46 @@
+#contact{
+    display: flex;
+    flex-direction: column;
+    p{
+        text-align: center;
+        margin: 1rem 0;
+    }
+    form{
+        width: 100%;
+        margin: 2rem;
+    }
+    input, textarea{
+        width: 100%;
+        padding: 1.5rem;
+        font-size: 1.6rem;
+
+        color: var(--text-color);
+        background-color: var(--second-bg-color);
+
+        border-radius: 1rem;
+        margin-bottom: 1rem;
+        resize: none;
+        &::placeholder{
+            color: var(--bg-color);
+        }
+        &:focus{
+            border: solid 1px  var(--main-color);
+            box-shadow: 0 0 0.7rem var(--main-color);
+        }
+    }
+}
+
+
+.button_container{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    div{
+        display: flex;
+        flex-wrap: wrap;
+    }
+    button{
+        min-width: 15.2rem;
+    }
+}
+

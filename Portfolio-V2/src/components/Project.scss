@@ -1,0 +1,15 @@
+#project{
+    flex-direction: column;
+    gap: 2rem;
+    &>p{
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+}
+
+.project_wrapper{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    gap: 1.5rem;
+}

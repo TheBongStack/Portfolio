@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import "./Header.scss";
 
-function Header() {
-  const [activeButton, setActiveButton] = useState(0);
-  const [menuButton, setMenuButton] = useState(false);
-  useEffect(() => {
-    if (document.body.clientWidth > 1200) setMenuButton(true);
-  }, []);
+function Header({
+  activeButton,
+  setActiveButton,
+}: {
+  activeButton: number;
+  setActiveButton: Dispatch<SetStateAction<number>>;
+}) {
+  const [menuButton, setMenuButton] = useState(true);
   const links = ["Home", "About", "Projects", "Skills", "Contact"];
   return (
     <header>

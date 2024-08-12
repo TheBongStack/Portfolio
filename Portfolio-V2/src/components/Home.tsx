@@ -1,28 +1,47 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, Ref, SetStateAction, useState } from "react";
 import Modals from "../utils/Modals";
 import Socials from "../utils/Socials";
 import "./Home.scss";
 import Typewriter from "typewriter-effect";
+import Button from "../utils/Buttons";
 
-function HireMeModals({ closeState }: {closeState: Dispatch<SetStateAction<boolean>>}) {
+function HireMeModals({
+  closeState,
+}: {
+  closeState: Dispatch<SetStateAction<boolean>>;
+}) {
+  const container_styles = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    flexDirection: "column",
+    height: "100%",
+    width: "100%",
+  };
   return (
-    <Modals handleState={closeState}>
-      <a href="" className="btn reset_btn">
+    <Modals handleState={closeState} style={container_styles}>
+      <Button
+        component="a"
+        props={{ href: "", style: { minWidth: "100%", marginBottom: "1rem"} }}
+        type="reset_btn"
+      >
         Freelancer
-      </a>
-      <a href="" className="btn reset_btn">
-        Fiverr.
-      </a>
+      </Button>
+      <Button
+        component="a"
+        props={{ href: "", style: { minWidth: "100%" } }}
+        type="reset_btn"
+      >
+        Fiverr
+      </Button>
     </Modals>
   );
 }
 
-function Home() {
-
+function Home({refs}: {refs: Ref<HTMLElement>}) {
   const [hireMe, setHireMe] = useState(false);
-
   return (
-    <section className="home" id="home">
+    <section id="home" ref={refs}>
       <div>
         <h3>Hello, It's Me</h3>
         <h1>Sourabrata Bose</h1>
@@ -51,20 +70,23 @@ function Home() {
           reiciendis repudiandae praesentium iste!
         </p>
         <Socials />
-        <div className="home_buttons">
-          <a href="" className="btn" download="">
+        <div>
+          <Button component="a" props={{ download: "" }}>
             Download CV<i className="fa-solid fa-file-arrow-down"></i>
-          </a>
-          <button className="btn reset_btn" type="button" onClick={() => {
-            setHireMe(true);
-            console.log("clicked");
-          }}>
+          </Button>
+          <Button
+            component="button"
+            props={{
+              onClick: () => setHireMe(true),
+              style: { marginLeft: "2rem" },
+            }}
+          >
             Hire Me<i className="fa-solid fa-bolt"></i>
-          </button>
-          {hireMe && <HireMeModals closeState={setHireMe}/>}
+          </Button>
+          {hireMe && <HireMeModals closeState={setHireMe} />}
         </div>
       </div>
-      <img src="/home.png" alt="It's me ! Sourabrata Bose" />
+      <img src="/home.png" alt="It's me ! Sourabrata Bose" className="home_img"/>
     </section>
   );
 }

@@ -4,9 +4,11 @@ import styles from "./Modals.module.scss";
 function Modals({
   children,
   handleState,
+  className
 }: {
   children: ReactNode;
   handleState: Dispatch<SetStateAction<boolean>>;
+  className: string
 }) {
   return (
     <div className={styles.backdrop} onScroll={(e) => e.stopPropagation()}>
@@ -15,7 +17,9 @@ function Modals({
           className={"fa-solid fa-xmark " + styles.cross}
           onClick={() => handleState(false)}
         ></i>
-        {children}
+        <div className={styles.container + ` ${className}`}>
+          {children}
+        </div>
       </div>
     </div>
   );
