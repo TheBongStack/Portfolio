@@ -4,7 +4,7 @@ import styles from "./Carousel.module.scss";
 import Link from "./Link";
 
 function Carousel() {
-  const scroll = useRef<HTMLDivElement>();
+  const scroll = useRef<HTMLDivElement>(null);
   const xps: Experience[] = new Array(7).fill({
     logo: "code",
     heading: "Lorem Ipsum",

@@ -11,7 +11,7 @@ function Socials() {
     <div>
       {Array.from(links, ([key, value]: [key: string, value: string]) => 
             <a href={value} title={key} key={key} className={styles.social_links}>
-              <i className={`fa-brands fa-square-${key.toLowerCase()} fa-2xl`}></i>
+              <i className={`fa-brands fa-square-${key.toLowerCase()}`}></i>
             </a>
       )}
     </div>

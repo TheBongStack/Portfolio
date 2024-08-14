@@ -9,3 +9,16 @@
 .about_img{
     margin-right: 3rem;
 }
+@media (max-width: 1300px) {
+    .about_img{
+        margin-right: 0rem;
+    }
+    #about{
+        flex-direction: column;
+        div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}

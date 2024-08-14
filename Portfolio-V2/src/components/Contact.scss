@@ -37,10 +37,24 @@
     margin-top: 1rem;
     div{
         display: flex;
-        flex-wrap: wrap;
     }
     button{
         min-width: 15.2rem;
     }
 }
-
+.contact_button--2{
+    margin-left: 2rem;
+}
+@media (max-width: 1300px) {
+    .button_container{
+        div{
+            flex-direction: column-reverse;
+            margin-bottom: 2rem;
+        }
+        flex-direction: column-reverse;
+    }
+    .contact_button--2{
+        margin-left: 0;
+        margin-bottom: 2rem;
+    }
+}

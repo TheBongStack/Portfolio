@@ -25,6 +25,11 @@
        transform: scaleX(1);
     }
     i{
-        font-size: 1.6rem;
+        font-size: inherit;
+    }
+  }
+  @media (max-width: 1300px) {
+    .link{
+        font-size: 1.2rem;
     }
   }

@@ -1,4 +1,4 @@
-import { Dispatch, Ref, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import Modals from "../utils/Modals";
 import Socials from "../utils/Socials";
 import "./Home.scss";
@@ -10,16 +10,8 @@ function HireMeModals({
 }: {
   closeState: Dispatch<SetStateAction<boolean>>;
 }) {
-  const container_styles = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-evenly",
-    flexDirection: "column",
-    height: "100%",
-    width: "100%",
-  };
   return (
-    <Modals handleState={closeState} style={container_styles}>
+    <Modals handleState={closeState} className="home_modal">
       <Button
         component="a"
         props={{ href: "", style: { minWidth: "100%", marginBottom: "1rem"} }}
@@ -38,15 +30,15 @@ function HireMeModals({
   );
 }
 
-function Home({refs}: {refs: Ref<HTMLElement>}) {
+function Home() {
   const [hireMe, setHireMe] = useState(false);
   return (
-    <section id="home" ref={refs}>
+    <section id="home">
       <div>
         <h3>Hello, It's Me</h3>
         <h1>Sourabrata Bose</h1>
         <h3 className="static_text">
-          And I'm a{" "}
+          And I'm a &nbsp;
           <Typewriter
             options={{
               strings: [
@@ -70,16 +62,16 @@ function Home({refs}: {refs: Ref<HTMLElement>}) {
           reiciendis repudiandae praesentium iste!
         </p>
         <Socials />
-        <div>
-          <Button component="a" props={{ download: "" }}>
+        <div className="home_button_container">
+          <Button component="a" props={{ download: ""}} classNameAddon="home_button--1">
             Download CV<i className="fa-solid fa-file-arrow-down"></i>
           </Button>
           <Button
             component="button"
             props={{
               onClick: () => setHireMe(true),
-              style: { marginLeft: "2rem" },
             }}
+            classNameAddon="home_button--2"
           >
             Hire Me<i className="fa-solid fa-bolt"></i>
           </Button>

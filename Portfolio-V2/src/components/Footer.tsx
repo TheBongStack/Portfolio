@@ -25,14 +25,13 @@ function Footer() {
         </div>
         <div className="support_me">
           <h1>
-            <span>Support </span>me by
+            <span>Support </span>me
           </h1>
           <Divider />
           <a href="https://www.buymeacoffee.com/sbose">
             <img
               src="https://img.buymeacoffee.com/button-api/?text=Buy me a Book&emoji=📖&slug=sbose&button_colour=BD5FFF&font_colour=ffffff&font_family=Poppins&outline_colour=000000&coffee_colour=FFDD00"
               alt="Donate to me by buying me a Book"
-              width="10px"
             />
           </a>
           <PayPalScriptProvider options={{ clientId: "test" }}>
@@ -44,7 +43,7 @@ function Footer() {
       <div className="link_to_top">
         <p>My Portfolio | Made with love by Sourabrata Bose </p>
         <a href="#home">
-          Go to Top<i className="fa-solid fa-circle-up"></i>
+          Go to Top &nbsp;<i className="fa-solid fa-circle-up"></i>
         </a>
       </div>
     </footer>

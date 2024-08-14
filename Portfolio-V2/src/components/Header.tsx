@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import "./Header.scss";
 
 function Header({
@@ -8,17 +8,35 @@ function Header({
   activeButton: number;
   setActiveButton: Dispatch<SetStateAction<number>>;
 }) {
-  const [menuButton, setMenuButton] = useState(true);
+  const [menuButton, setMenuButton] = useState(false);
   const links = ["Home", "About", "Projects", "Skills", "Contact"];
   return (
     <header>
       <a href="#home" className="logo">
         S Bose | Portfolio.
       </a>
+      <nav className="desktop_nav">
+          {links.map((content, idx) => (
+            <a
+              href={`#${
+                content.endsWith("s")
+                  ? content.toLowerCase().slice(0, -1)
+                  : content.toLowerCase()
+              }`}
+              className={`nav_button ${activeButton == idx ? "active" : ""}`}
+              onClick={() => setActiveButton(idx)}
+              key={idx}
+            >
+              {content}
+            </a>
+          ))}
+        </nav>
       {menuButton && (
-        <nav>
-          <div className="close_button" onClick={() => setMenuButton(false)}>
+        <nav className="mobi_nav">
+          <div className="close_button">
+            <span onClick={() => setMenuButton(false)}>
             &times;
+            </span>
           </div>
           {links.map((content, idx) => (
             <a

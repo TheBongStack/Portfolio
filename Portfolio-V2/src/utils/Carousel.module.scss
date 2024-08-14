@@ -75,3 +75,11 @@
     font-size: 3rem;
   }
 }
+@media (max-width: 1300px) {
+  .nav_button{
+    display: none;
+  }
+  .experience_item{
+    min-width: 300px;
+  }
+}

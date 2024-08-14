@@ -1,11 +1,11 @@
-import { Ref, useState } from "react";
+import { useState } from "react";
 import Button from "../utils/Buttons";
 import "./About.scss";
 
-function About({refs}: {refs: Ref<HTMLElement>}) {
+function About() {
   const [readmore, setReadmore] = useState(false);
   return (
-    <section id="about" ref={refs}>
+    <section id="about">
       <img
         src="/about.png"
         alt="A little about me"

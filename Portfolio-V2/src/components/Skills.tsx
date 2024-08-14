@@ -1,7 +1,7 @@
-import { Ref } from "react";
 import Carousel from "../utils/Carousel";
 import "./Skills.scss";
-function Skills({refs}: {refs: Ref<HTMLElement>}) {
+
+function Skills() {
   const skill_keyword_array: string[] = [
     "C++",
     "C",
@@ -26,7 +26,7 @@ function Skills({refs}: {refs: Ref<HTMLElement>}) {
     "TypeScript",
   ];
   return (
-    <section id="skill" ref={refs}>
+    <section id="skill">
       <h1>
         My <span>Skills</span>
       </h1>

@@ -1,12 +1,11 @@
-import { Ref } from "react";
 import Button from "../utils/Buttons";
 import "./Contact.scss";
 
-function Contact({refs}: {refs: Ref<HTMLElement>}) {
+function Contact() {
   return (
-    <section id="contact" ref={refs}>
+    <section id="contact">
       <h1>
-        Contact <span>Me !</span>
+        Contact <span>Me</span>
       </h1>
       <p>
         Feel free to contact me directly by filling up the below form for any
@@ -22,7 +21,7 @@ function Contact({refs}: {refs: Ref<HTMLElement>}) {
           <Button>Calendly</Button>
           <div>
             <Button type="reset_btn">Reset</Button>
-            <Button props={{ style: { marginLeft: "3rem" } }}>Submit</Button>
+            <Button classNameAddon="contact_button--2">Submit</Button>
           </div>
         </div>
       </form>

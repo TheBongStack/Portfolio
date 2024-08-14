@@ -1,7 +1,7 @@
 .btn{
     display: inline-flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
 
     padding: 1rem 2rem;
     background: var(--main-color);
@@ -16,7 +16,7 @@
     i{
         margin-left: 1rem;
         color: var(--bg-color);
-        font-size: 1.6rem;
+        font-size: inherit;
     }
     &:hover{
         box-shadow: none;
@@ -41,3 +41,9 @@
         transition: all 0.2s ease-out;
     }
 }
+
+@media (max-width: 1300px) {
+    .btn{
+      font-size: 1.2rem;  
+    }
+  }
